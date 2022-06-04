@@ -1,0 +1,13 @@
+Current Objective:
+
+To insert into database and implement delete functionality using checkboxes in frontpage cards
+To validate inputs from "add product form" and loop through product types before insertion.
+
+Key Files:
+
+1. index.php - frontpage or product list(Displays data using cards)
+2. addproduct.html - to add products to database(uses type switcher to sort product types)
+3. Product.php - contains show, insert and delete functions
+4. Validator.php - is meant to validate inputs from addproduct form.
+
+

@@ -1,0 +1,131 @@
+<div class="type mt-2" id="type options" aria-hidden="true">
+          <div class="row" id="book">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Weight (KG)</label>
+            <div class="col-sm-2">
+              <input type="number" class="form-control" id="weight">
+            </div>
+            <p class="fw-bold mt-4">Please, provide weight in kg.</p>
+          </div>
+          <div class="row" id="dvd">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Size (MB)</label>
+            <div class="col-sm-2">
+              <input type="number" class="form-control" id="size">
+            </div>
+            <p class="fw-bold mt-4">Please, provide size in Mb.</p>
+          </div>
+          <div class="row" id="furniture">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Height (CM)</label>
+            <div class="col-sm-2">
+              <input type="number" class="form-control" id="height">
+            </div>
+            <p class="fw-bold mt-4">Please, provide height in cm.</p>
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Width (CM)</label>
+            <div class="col-sm-2">
+              <input type="number" class="form-control" id="height">
+            </div>
+            <p class="fw-bold mt-4">Please, provide width in cm.</p>
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Length (CM)</label>
+            <div class="col-sm-2">
+              <input type="number" class="form-control" id="length">
+            </div>
+            <p class="fw-bold mt-4">Please, provide length in cm.</p>
+          </div>
+        </div>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Disc</a></li>
+            <li><a class="dropdown-item" href="#">Disc</a></li>
+            <li><a class="dropdown-item" href="#">Furniture</a></li>
+          </ul>
+
+          <div class="bg-light mt-lg-5 align-items-center border-b border-top mx-auto">
+            <div class="container-fluid mx-auto">
+              <p>Scandiweb Assignment</p>
+            </div>
+        </div>
+
+
+        <div class="row">
+          <?php foreach($products as $product){ ?>
+              <div class="row-cols-2 px-4 g-3 d-flex flex-row justify-content-between">
+                  <div class="card text-center" style="width: 16rem;">
+                      <div class="form-check m-1">
+                          <input class="delete-checkbox form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                          <label class="form-check-label" for="flexCheckDefault">
+                            Default checkbox
+                          </label>
+                      </div>
+    
+                      <div class="card-body">
+                        <h5 class="card-title"><?php echo htmlspecialchars($product['sku']); ?></h5>
+                        <p class="card-text"><?php echo htmlspecialchars($product['name']); ?></p>
+                        <p class="card-text"><?php echo htmlspecialchars($product['price']); ?></p>
+                        <p class="card-text"><?php echo htmlspecialchars($product['attributes']); ?></p>
+                      </div>
+         
+              </div>
+          <?php } ?>
+            </div>
+        </div>
+
+
+
+        public function validateTypeForm(){
+        foreach(self::$types as $type){
+            if(!array_key_exists($type, $this->inputs['type'])){
+                trigger_error("'$type' is not present");
+                return;
+            }
+        }
+        $this->validateDvd;
+        $this->validateBook;
+        $this->validateFurniture;
+        return $this->errors;
+    }
+
+    return ($this->post_input['type'] == "dvd") ? $this-validate(new Book(this->post_data)) :
+        ($this->post_input['type'] == "book") ? $this-validate(new Disk(this->post_data)) :
+        ($this->post_input['type'] == "furniture") ? $this-validate(new Furniure(this->post_data));
+
+
+
+//show products
+<?php
+
+class Product extends Database {
+
+    private $table = 'products';
+
+    protected $inputs;
+
+    protected $sku;
+    protected $name;
+    protected $price;
+    protected $type;
+    protected $attributes;
+
+    public function getProducts() {
+        $sql = "SELECT * FROM products";
+        $result = $this->connect()->query($sql);
+        $numRows = $result->num_rows;
+        if ($numRows > 0) {
+            while ($row = $result->fetch_assoc()){
+                $data[] = $row;
+            }
+            return $data;
+        }
+    }
+
+    public function setProducts() {
+        $data = "'" . implode( "', '", $inputs);
+        $sql = "INSERT INTO products(sku,name,price,type,attributes) VALUES($data)";
+        $stmt = $this->connect()->query($sql);
+        if($stmt){
+
+        }
+    }
+}
+    
+
+
+    
